@@ -8,6 +8,7 @@ if($null -eq (Get-Command -CommandType Application -ErrorAction SilentlyContinue
 
 #安装一些必备的软件，chocolatey这个上面的软件要比scoop上面的稍微新一些
 choco install neovim -y
+choco install ag -y
 
 
 if($null -eq (Get-Command -CommandType Application -ErrorAction SilentlyContinue scoop)){
@@ -16,7 +17,7 @@ if($null -eq (Get-Command -CommandType Application -ErrorAction SilentlyContinue
     Write-Output "scoop not found, will instal it"
     Set-ExecutionPolicy RemoteSigned -scope CurrentUser
     Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
-    scoop config proxy http://localhost:7891
+    scoop config proxy 127.0.0.1:7891
 }
 #使用scoop 安装一些软件
 scoop install 7zip
@@ -28,7 +29,16 @@ scoop install maven
 scoop install mkcert
 scoop install pandoc
 scoop install perl
+#
 scoop install ripgrep
+#
 scoop install sudo
+#
 scoop install unzip
+#将剪贴板中的图像保存为文件
+#https://github.com/huiyadanli/PasteEx.git
+scoop install pasteex
+#类似于cat，但是提供高亮
+#https://github.com/sharkdp/bat.git
+scoop install bat
 

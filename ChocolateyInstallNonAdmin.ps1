@@ -10,7 +10,7 @@ Set-ExecutionPolicy Bypass -Scope Process -Force;
 
 # All install options - offline, proxy, etc at
 # https://chocolatey.org/install
-iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 
 #安装完成之后设置代理
 choco config set proxy http://localhost:7891
