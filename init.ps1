@@ -19,6 +19,15 @@ if($null -eq (Get-Command -CommandType Application -ErrorAction SilentlyContinue
     Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
     scoop config proxy 127.0.0.1:7891
 }
+# 先添加bucket
+scoop bucket add extras
+scoop bucket add nirsoft
+scoop bucket add dorado https://github.com/h404bi/dorado
+scoop bucket add Ash258 'https://github.com/Ash258/Scoop-Ash258.git'
+scoop bucket add nerd-fonts
+# 对于开发人员，可添加下面的两个
+scoop bucket add java
+scoop bucket add versions
 #使用scoop 安装一些软件
 scoop install 7zip
 scoop install ack
