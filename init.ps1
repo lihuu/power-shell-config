@@ -9,6 +9,7 @@ if($null -eq (Get-Command -CommandType Application -ErrorAction SilentlyContinue
 #安装一些必备的软件，chocolatey这个上面的软件要比scoop上面的稍微新一些
 choco install neovim -y
 choco install ag -y
+choco install mingw -y
 
 
 if($null -eq (Get-Command -CommandType Application -ErrorAction SilentlyContinue scoop)){
@@ -50,4 +51,6 @@ scoop install pasteex
 #类似于cat，但是提供高亮
 #https://github.com/sharkdp/bat.git
 scoop install bat
+
+scoop install fd
 
