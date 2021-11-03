@@ -51,6 +51,9 @@ scoop install pasteex
 #类似于cat，但是提供高亮
 #https://github.com/sharkdp/bat.git
 scoop install bat
-
 scoop install fd
+#Windows wsl
+scoop install archwsl
+# 
+scoop install cmake
 
