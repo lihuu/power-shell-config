@@ -10,6 +10,7 @@ if($null -eq (Get-Command -CommandType Application -ErrorAction SilentlyContinue
 choco install neovim -y
 choco install ag -y
 choco install mingw -y
+choco install kate
 
 
 if($null -eq (Get-Command -CommandType Application -ErrorAction SilentlyContinue scoop)){
