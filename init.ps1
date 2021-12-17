@@ -11,6 +11,7 @@ choco install neovim -y
 choco install ag -y
 choco install mingw -y
 choco install kate
+choco install fzf
 
 
 if($null -eq (Get-Command -CommandType Application -ErrorAction SilentlyContinue scoop)){

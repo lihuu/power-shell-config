@@ -1,6 +1,7 @@
 ﻿chcp 65001
 Import-Module posh-git
 Import-Module oh-my-posh
+Import-Module -Name Terminal-Icons
 function Get-PSVersion{
     $PSVersionTable.PSVersion
 }
@@ -12,10 +13,35 @@ function Get-ModulePath{
     $env.PSModulePath
 }
 
+function Get-ChildItemFormatedWide {
+    param (
+        [string]$Path = ""
+    )
+
+    $Expression = "Get-ChildItem -Path `"$Path`" $Args | Format-Wide -AutoSize"
+    $Items = Invoke-Expression $Expression
+    ForEach ($Item in $Items) {
+        $Item
+    }
+}
+
+function Get-ChildItemFormatedTable {
+    param (
+        [string]$Path = ""
+    )
+
+    $Expression = "Get-ChildItem -Path `"$Path`" $Args | Format-Table -AutoSize"
+    $Items = Invoke-Expression $Expression
+    ForEach ($Item in $Items) {
+        $Item
+    }
+}
+
 If (-Not (Test-Path Variable:PSise)) {  # Only run this in the console and not in the ISE
     Import-Module Get-ChildItemColor
-    Set-Alias ll Get-ChildItem -option AllScope
-    Set-Alias ls Get-ChildItemColorFormatWide -option AllScope
+    Set-Alias ll Get-ChildItemFormatedTable -option AllScope
+    #Set-Alias ls Get-ChildItemColorFormatWide -option AllScope
+    Set-Alias ls Get-ChildItemFormatedWide -option AllScope
 }
 
 Set-Alias pwd Get-Location -option AllScope
