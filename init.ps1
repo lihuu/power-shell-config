@@ -12,6 +12,7 @@ choco install ag -y
 choco install mingw -y
 choco install kate
 choco install fzf
+choco install httpie
 
 
 if($null -eq (Get-Command -CommandType Application -ErrorAction SilentlyContinue scoop)){

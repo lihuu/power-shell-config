@@ -2,6 +2,7 @@
 Import-Module posh-git
 Import-Module oh-my-posh
 Import-Module -Name Terminal-Icons
+Import-Module -Name PSFzf
 function Get-PSVersion{
     $PSVersionTable.PSVersion
 }
