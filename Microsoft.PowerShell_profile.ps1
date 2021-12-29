@@ -1,6 +1,7 @@
-﻿chcp 65001
-Import-Module posh-git
+﻿#chcp 65001
+
 Import-Module oh-my-posh
+Import-Module posh-git
 Import-Module -Name Terminal-Icons
 Import-Module -Name PSFzf
 function Get-PSVersion{
@@ -59,3 +60,5 @@ Set-PoshPrompt -Theme marcduiker
 
 #pip install thefuck
 Invoke-Expression "$(thefuck --alias)"
+
+Write-Host ''
