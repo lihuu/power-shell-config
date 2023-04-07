@@ -6,16 +6,6 @@ if($null -eq (Get-Command -CommandType Application -ErrorAction SilentlyContinue
     .\ChocolateyInstallNonAdmin.ps1
 }
 
-#安装一些必备的软件，chocolatey这个上面的软件要比scoop上面的稍微新一些
-choco install neovim -y
-choco install ag -y
-choco install mingw -y
-choco install kate
-choco install fzf
-choco install httpie
-choco install picgo
-choco install marktext
-
 
 if($null -eq (Get-Command -CommandType Application -ErrorAction SilentlyContinue scoop)){
     # 安装 scoop，软件安装的目录默认的即可
@@ -23,7 +13,7 @@ if($null -eq (Get-Command -CommandType Application -ErrorAction SilentlyContinue
     Write-Output "scoop not found, will instal it"
     Set-ExecutionPolicy RemoteSigned -scope CurrentUser
     Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
-    scoop config proxy 127.0.0.1:7891
+    scoop config proxy 127.0.0.1:7890
 }
 # 先添加bucket
 scoop bucket add extras

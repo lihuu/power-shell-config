@@ -13,6 +13,6 @@ Set-ExecutionPolicy Bypass -Scope Process -Force;
 Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 
 #安装完成之后设置代理
-choco config set proxy http://localhost:7891
+choco config set proxy http://localhost:7890
 choco config set proxyBypassList "'http://localhost,http://this.location/'" #0.10.4 required
 choco config set proxyBypassOnLocal true #0.10.4 required
