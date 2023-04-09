@@ -1,6 +1,6 @@
 ﻿#chcp 65001
 
-Import-Module oh-my-posh
+#Import-Module oh-my-posh
 Import-Module posh-git
 Import-Module -Name Terminal-Icons
 Import-Module -Name PSFzf
@@ -60,5 +60,7 @@ Set-PoshPrompt -Theme marcduiker
 
 #pip install thefuck
 Invoke-Expression "$(thefuck --alias)"
+
+oh-my-posh init pwsh | Invoke-Expression
 
 Write-Host ''
