@@ -2,7 +2,7 @@
 
 if($null -eq (Get-Command -CommandType Application -ErrorAction SilentlyContinue choco.exe)){
     # 安装choco ，默认软件会安装到 C:/tools 目录中
-    Write-Output "Choce not found will install it"
+    Write-Output "Choco not found will install it"
     .\ChocolateyInstallNonAdmin.ps1
 }
 
