@@ -47,6 +47,7 @@ scoop install pasteex
 #https://github.com/sharkdp/bat.git
 scoop install bat
 scoop install fd
+scoop install runcat
 #Windows wsl
 scoop install archwsl
 # 
