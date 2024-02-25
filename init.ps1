@@ -59,4 +59,5 @@ scoop install mobaxterm
 scoop install everything
 scoop install wox
 scoop install listary
+scoop install wingetui
 
