@@ -1,9 +1,9 @@
 ﻿#chcp 65001
 
 #Import-Module oh-my-posh
-Import-Module posh-git
+#Import-Module posh-git
 Import-Module -Name Terminal-Icons
-Import-Module -Name PSFzf
+#Import-Module -Name PSFzf
 function Get-PSVersion{
     $PSVersionTable.PSVersion
 }
@@ -59,8 +59,11 @@ Set-Alias version Get-LPSVersion -option AllScope
 Set-PoshPrompt -Theme marcduiker
 
 #pip install thefuck
-Invoke-Expression "$(thefuck --alias)"
+#Invoke-Expression "$(thefuck --alias)"
 
-oh-my-posh init pwsh | Invoke-Expression
+#oh-my-posh init pwsh | Invoke-Expression
 
-Write-Host ''
+Invoke-Expression (&starship init powershell)
+# 检查powershell启动时间
+#Measure-Command { PowerShell.exe -NoProfile -Command { } }
+#Write-Host ''

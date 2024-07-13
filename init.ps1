@@ -53,11 +53,12 @@ scoop install archwsl
 # 
 scoop install cmake
 
-scoop install https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/oh-my-posh.json
+#scoop install https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/oh-my-posh.json
 scoop install neovim
 scoop install mobaxterm
 scoop install everything
 scoop install wox
 scoop install listary
 scoop install wingetui
+scoop install starship
 
