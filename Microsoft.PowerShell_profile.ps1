@@ -1,7 +1,8 @@
 ﻿#chcp 65001
 
 #Import-Module oh-my-posh
-#Import-Module posh-git
+Import-Module posh-git
+#Add-PoshGitToProfile
 Import-Module -Name Terminal-Icons
 #Import-Module -Name PSFzf
 function Get-PSVersion{
@@ -14,6 +15,13 @@ function Get-LPSVersion{
 function Get-ModulePath{
     $env.PSModulePath
 }
+
+function Get-ProfileDir {
+    $PROFILE | Split-Path
+}
+
+$env:PROFILE_DIR=$(Get-ProfileDir)
+
 
 function Get-ChildItemFormatedWide {
     param (
@@ -56,7 +64,7 @@ Set-Alias version Get-LPSVersion -option AllScope
 #Set-PoshPrompt slim
 #Set-PoshPrompt material
 
-Set-PoshPrompt -Theme marcduiker
+#Set-PoshPrompt -Theme marcduiker
 
 #pip install thefuck
 #Invoke-Expression "$(thefuck --alias)"

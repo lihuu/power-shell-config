@@ -61,4 +61,5 @@ scoop install wox
 scoop install listary
 scoop install wingetui
 scoop install starship
+scoop install posh-git
 
