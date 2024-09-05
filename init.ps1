@@ -15,6 +15,8 @@ if($null -eq (Get-Command -CommandType Application -ErrorAction SilentlyContinue
     Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
     scoop config proxy 127.0.0.1:7890
 }
+
+Write-Output "Start to install software using scoop"
 # 先添加bucket
 scoop bucket add extras
 scoop bucket add nirsoft
@@ -62,4 +64,8 @@ scoop install listary
 scoop install wingetui
 scoop install starship
 scoop install posh-git
+scoop install sourcetree
+scoop install gpg4win
+
+#Tickeys
 
