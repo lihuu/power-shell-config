@@ -57,6 +57,10 @@ scoop install cmake
 
 #scoop install https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/oh-my-posh.json
 scoop install neovim
+scoop install neovim-qt
+scoop install neovide
+scoop install vim-nightly
+
 scoop install mobaxterm
 scoop install everything
 scoop install wox
@@ -66,6 +70,13 @@ scoop install starship
 scoop install posh-git
 scoop install sourcetree
 scoop install gpg4win
+scoop install IBMPlexMono-NF
+scoop install FiraCode-NF
+scoop install JetBrainsMono-NF
+scoop install wget
+scoop install sed
+scoop install totalcommander
+scoop install git-credential-manager
 
 #Tickeys
 
