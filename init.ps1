@@ -77,6 +77,8 @@ scoop install wget
 scoop install sed
 scoop install totalcommander
 scoop install git-credential-manager
+scoop install sourcegit
+scoop install gitextensions
 
 #Tickeys
 
