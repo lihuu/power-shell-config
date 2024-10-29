@@ -52,7 +52,7 @@ scoop install fd
 scoop install runcat
 #Windows wsl
 scoop install archwsl
-# 
+#
 scoop install cmake
 
 #scoop install https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/oh-my-posh.json
@@ -82,3 +82,9 @@ scoop install gitextensions
 
 #Tickeys
 
+
+# check the exisitence of winget
+if($null -eq (Get-Command -CommandType Application -ErrorAction SilentlyContinue winget)){
+    # 安装winget
+    Write-Output "winget not found, will install it, please install it from windows store!"
+}

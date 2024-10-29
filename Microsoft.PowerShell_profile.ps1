@@ -1,57 +1,72 @@
 ﻿#chcp 65001
 
 #Import-Module oh-my-posh
-Import-Module posh-git
+#Import-Module posh-git
 #Add-PoshGitToProfile
 Import-Module -Name Terminal-Icons
 #Import-Module -Name PSFzf
-function Get-PSVersion{
-    $PSVersionTable.PSVersion
+function Get-PSVersion {
+  $PSVersionTable.PSVersion
 }
 
-function Get-LPSVersion{
-    $PSVersionTable.PSVersion
+function Get-LPSVersion {
+  $PSVersionTable.PSVersion
 }
-function Get-ModulePath{
-    $env.PSModulePath
+function Get-ModulePath {
+  $env.PSModulePath
 }
 
 function Get-ProfileDir {
-    $PROFILE | Split-Path
+  $PROFILE | Split-Path
 }
 
-$env:PROFILE_DIR=$(Get-ProfileDir)
+$env:PROFILE_DIR = $(Get-ProfileDir)
 
 
 function Get-ChildItemFormatedWide {
-    param (
-        [string]$Path = ""
-    )
+  param (
+    [string]$Path = ""
+  )
 
-    $Expression = "Get-ChildItem -Path `"$Path`" $Args | Format-Wide -AutoSize"
-    $Items = Invoke-Expression $Expression
-    ForEach ($Item in $Items) {
-        $Item
-    }
+  $Expression = "Get-ChildItem -Path `"$Path`" $Args | Format-Wide -AutoSize"
+  $Items = Invoke-Expression $Expression
+  ForEach ($Item in $Items) {
+    $Item
+  }
 }
 
 function Get-ChildItemFormatedTable {
-    param (
-        [string]$Path = ""
-    )
+  param (
+    [string]$Path = ""
+  )
 
-    $Expression = "Get-ChildItem -Path `"$Path`" $Args | Format-Table -AutoSize"
-    $Items = Invoke-Expression $Expression
-    ForEach ($Item in $Items) {
-        $Item
-    }
+  $Expression = "Get-ChildItem -Path `"$Path`" $Args | Format-Table -AutoSize"
+  $Items = Invoke-Expression $Expression
+  ForEach ($Item in $Items) {
+    $Item
+  }
 }
 
-If (-Not (Test-Path Variable:PSise)) {  # Only run this in the console and not in the ISE
-    Import-Module Get-ChildItemColor
-    Set-Alias ll Get-ChildItemFormatedTable -option AllScope
-    #Set-Alias ls Get-ChildItemColorFormatWide -option AllScope
-    Set-Alias ls Get-ChildItemFormatedWide -option AllScope
+If (-Not (Test-Path Variable:PSise)) {
+  # Only run this in the console and not in the ISE
+  Import-Module Get-ChildItemColor
+  Set-Alias ll Get-ChildItemFormatedTable -option AllScope
+  #Set-Alias ls Get-ChildItemColorFormatWide -option AllScope
+  Set-Alias ls Get-ChildItemFormatedWide -option AllScope
+}
+
+if ($null -eq (Get-Command -CommandType Application -ErrorAction SilentlyContinue winget)) {
+  # 安装winget
+  Write-Output "winget not found, will install it, please install it from windows store!"
+}
+else {
+  Set-Alias apt winget
+  function Get-Upgradable {
+    apt list --upgrade-available
+  }
+  function Update-All {
+    apt upgrade --all
+  }
 }
 
 Set-Alias pwd Get-Location -option AllScope
