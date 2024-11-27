@@ -35,6 +35,34 @@ function Get-ChildItemFormatedWide {
   }
 }
 
+
+function Test-CommandExist {
+  param (
+    [string] $path = ""
+  )
+  return !($null -eq (Get-Command -CommandType Application -ErrorAction SilentlyContinue $path))
+}
+
+function Edit-Profile {
+  if (Test-CommandExist("code")) {
+    code $PROFILE
+  }
+  elseif (Test-CommandExist("gvim")) {
+    gvim $PROFILE
+  }
+  elseif (Test-CommandExist vim) {
+    vim $PROFILE
+  }
+  elseif (Test-CommandExist nvim) {
+    nvim $PROFILE
+  }
+  else {
+    notepad.exe $PROFILE
+  }
+}
+
+
+
 function Get-ChildItemFormatedTable {
   param (
     [string]$Path = ""
@@ -55,7 +83,7 @@ If (-Not (Test-Path Variable:PSise)) {
   Set-Alias ls Get-ChildItemFormatedWide -option AllScope
 }
 
-if ($null -eq (Get-Command -CommandType Application -ErrorAction SilentlyContinue winget)) {
+if (-Not (Test-CommandExist("winget"))) {
   # 安装winget
   Write-Output "winget not found, will install it, please install it from windows store!"
 }
@@ -66,6 +94,38 @@ else {
   }
   function Update-All {
     apt upgrade --all
+  }
+
+  function Get-WinGetInstalled {
+    apt list
+  }
+
+  function Invoke-WinGetUpgrade {
+    [CmdletBinding()]
+    param (
+      [Parameter(Mandatory = $true)]
+      [string]$content
+    )
+
+
+    begin {
+      Write-Output "Start upgraded $content"
+    }
+
+    process {
+      $appName = $content.Replace("^", "")
+      apt upgrade $appName
+    }
+
+    end {
+      Write-Output "Upgrade $content successfully"
+    }
+  }
+
+  function Get-WingetUpgradable {
+    # Install-Package Microsoft.WinGet.Client
+    #Get-Upgradable | Select-String -Pattern "winget" | ForEach-Object { $_.Line } | fzf --bind 'enter:become(pwsh -c "Invoke-WingetUpgrade {}")' 
+    Get-WinGetPackage | Where-Object IsUpdateAvailable | ForEach-Object { $_.Id } |  fzf --bind 'enter:become(pwsh -c "Invoke-WinGetUpgrade {}")' 
   }
 }
 
@@ -90,3 +150,8 @@ Invoke-Expression (&starship init powershell)
 # 检查powershell启动时间
 #Measure-Command { PowerShell.exe -NoProfile -Command { } }
 #Write-Host ''
+
+#f45873b3-b655-43a6-b217-97c00aa0db58 PowerToys CommandNotFound module
+
+Import-Module -Name Microsoft.WinGet.CommandNotFound
+#f45873b3-b655-43a6-b217-97c00aa0db58
