@@ -79,6 +79,8 @@ scoop install totalcommander
 scoop install git-credential-manager
 scoop install sourcegit
 scoop install gitextensions
+# 一个轻量级的密码管理器，JetBrains 中的密码会保存在这里
+scoop install keepass
 
 #Tickeys
 
