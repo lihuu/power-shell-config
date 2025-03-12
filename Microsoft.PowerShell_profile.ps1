@@ -195,3 +195,23 @@ function Add-GitIgnore {
   Add-Content -Path $gitignorePath -Value "`n$FilePath"
   Write-Output "Added '$FilePath' to .gitignore"
 }
+
+function Get-GitIgnore {
+  $gitRoot = git rev-parse --show-toplevel 2>$null
+  if (-not $?) {
+    Write-Error "Not in a git repository"
+    return
+  }
+  
+  $gitignorePath = Join-Path $gitRoot '.gitignore'
+  
+  if (-not (Test-Path $gitignorePath)) {
+    Write-Output "No .gitignore file found"
+    return
+  }
+  
+  Get-Content $gitignorePath
+}
+
+
+
