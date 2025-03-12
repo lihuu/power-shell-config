@@ -155,3 +155,43 @@ Invoke-Expression (&starship init powershell)
 
 Import-Module -Name Microsoft.WinGet.CommandNotFound
 #f45873b3-b655-43a6-b217-97c00aa0db58
+
+
+Set-Alias open explorer.exe
+
+function Add-GitIgnore {
+  [CmdletBinding()]
+  param (
+    [Parameter(Mandatory = $true, Position = 0)]
+    [string]$FilePath
+  )
+  
+  # Normalize the file path
+  $FilePath = $FilePath.Replace('\', '/').Trim()
+  
+  # Find the git root directory
+  $gitRoot = git rev-parse --show-toplevel 2>$null
+  if (-not $?) {
+    Write-Error "Not in a git repository"
+    return
+  }
+  
+  $gitignorePath = Join-Path $gitRoot '.gitignore'
+  
+  # Create .gitignore if it doesn't exist
+  if (-not (Test-Path $gitignorePath)) {
+    New-Item -Path $gitignorePath -ItemType File | Out-Null
+    Write-Output "Created new .gitignore file"
+  }
+  
+  # Check if file path is already in .gitignore
+  $content = Get-Content $gitignorePath -ErrorAction SilentlyContinue
+  if ($content -contains $FilePath) {
+    Write-Output "'$FilePath' is already in .gitignore"
+    return
+  }
+  
+  # Add the file to .gitignore
+  Add-Content -Path $gitignorePath -Value "`n$FilePath"
+  Write-Output "Added '$FilePath' to .gitignore"
+}
