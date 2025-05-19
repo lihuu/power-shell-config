@@ -214,4 +214,29 @@ function Get-GitIgnore {
 }
 
 
+# write set proxy
+function Set-Proxy {
+  param (
+    [string]$Server = "127.0.0.1",
+    [string]$Port = "7890"
+  )
+  
+  $env:http_proxy = "http://${Server}:${Port}"
+  $env:https_proxy = "http://${Server}:${Port}"
+  
+  Write-Output "Proxy set to: $env:http_proxy"
+}
+
+function Remove-Proxy {
+  $env:http_proxy = ""
+  $env:https_proxy = ""
+  
+  Write-Output "Proxy settings removed"
+}
+
+function Get-Proxy {
+  Write-Output "Current proxy settings:"
+  Write-Output "HTTP Proxy: $env:http_proxy"
+  Write-Output "HTTPS Proxy: $env:https_proxy"
+}
 
