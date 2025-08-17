@@ -1,10 +1,11 @@
 #windows 软件平台环境初始化
 
-if($null -eq (Get-Command -CommandType Application -ErrorAction SilentlyContinue choco.exe)){
+    # do not use choco, using scoop and winget instead
+#if($null -eq (Get-Command -CommandType Application -ErrorAction SilentlyContinue choco.exe)){
     # 安装choco ，默认软件会安装到 C:/tools 目录中
-    Write-Output "Choco not found will install it"
-    .\ChocolateyInstallNonAdmin.ps1
-}
+#    Write-Output "Choco not found will install it"
+    #.\ChocolateyInstallNonAdmin.ps1
+#}
 
 
 if($null -eq (Get-Command -CommandType Application -ErrorAction SilentlyContinue scoop)){

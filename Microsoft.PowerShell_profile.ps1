@@ -240,3 +240,5 @@ function Get-Proxy {
   Write-Output "HTTPS Proxy: $env:https_proxy"
 }
 
+set-proxy
+
